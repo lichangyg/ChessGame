@@ -4,7 +4,7 @@ using namespace std;
 DispatchHandler *DispatchHandler::m_instances = nullptr;
 DispatchHandler::DispatchHandler()
 {
-	//cocos2d::Director::getInstance()->getScheduler()->performFunctionInCocosThread(std::bind(&DispatchHandler::update));
+	cocos2d::Director::getInstance()->getScheduler()->scheduleUpdate(this,0,false);
 }
 
 DispatchHandler::~DispatchHandler()
@@ -27,12 +27,16 @@ DispatchHandler *DispatchHandler::getInstance()
 }
 
 // 每帧处理的消息
-void DispatchHandler::update()
+void DispatchHandler::update(float dt)
 {
 	// 没有消息数据处理
 	if (m_dispatchs.empty())
 	{
 		return ;
+	}
+	if (m_dispatchMaps.empty())
+	{
+		m_dispatchs.clear();
 	}
 
 	auto dispatch = m_dispatchMaps;
@@ -65,6 +69,8 @@ void DispatchHandler::update()
 		m_dispatchs.erase(dispatchs);
 		return ;
 	}
+	// 去掉处理过的消息数据信息
+	m_dispatchs.erase(dispatchs);
 }
 
 // 添加处理消息

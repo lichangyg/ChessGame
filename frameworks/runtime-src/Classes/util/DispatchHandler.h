@@ -46,6 +46,10 @@ public:
 
 	// 删除cmd中的编号为order的消息处理
 	void removeDispatchHandler(int cmd,int order);
+
+public:
+	// 每帧处理的消息
+	void update(float dt);
 protected:
 	// 检测当前是否有对应的命令的操作
 	bool checkHandler(int cmd);
@@ -53,8 +57,7 @@ protected:
 	// 获取消息内容
 	std::vector<DispatchData> &getHandler(int cmd);
 
-	// 每帧处理的消息
-	void update();
+
 
 	std::vector<Dispatch> getDispatchs(int cmd);
 private:

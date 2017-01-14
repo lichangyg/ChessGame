@@ -12,8 +12,14 @@ using namespace CocosDenshion;
 USING_NS_CC;
 using namespace std;
 
+void dispatch(int cmd, void *data, size_t lenght)
+{
+	int a = 10;
+}
+
 AppDelegate::AppDelegate()
 {
+
 }
 
 AppDelegate::~AppDelegate()
@@ -49,6 +55,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 	
 	// 读取登录服务器端口
 	auto port = LuaUtil::getLuaInt("config","getPort");
+
+	auto homeKeyCode = LuaUtil::getLuaInt(DISPATCHHANDLER_LUA_FILE_NAME,"getHomeKeyValueResume");
+	gDispatchhandler->addDispatchHandler(homeKeyCode,dispatch);
+
 	gNetWork->connection(ip,port);
     if (engine->executeScriptFile("src/main.lua")) {
         return false;

@@ -1,0 +1,188 @@
+1. Git add 添加 多余文件 
+这样的错误是由于， 有的时候 可能
+
+git add . （空格+ 点） 表示当前目录所有文件，不小心就会提交其他文件
+
+git add 如果添加了错误的文件的话
+
+撤销操作
+
+git status 先看一下add 中的文件 
+git reset HEAD 如果后面什么都不跟的话 就是上一次add 里面的全部撤销了 
+git reset HEAD XXX/XXX/XXX.Java 就是对某个文件进行撤销了
+
+2. git commit 错误
+
+如果不小心 弄错了 git add后 ， 又 git commit 了。 
+先使用 
+git log 查看节点 
+commit xxxxxxxxxxxxxxxxxxxxxxxxxx 
+Merge: 
+Author: 
+Date:
+
+然后 
+git reset commit_id
+
+over
+
+PS：还没有 push 也就是 repo upload 的时候
+
+git reset commit_id （回退到上一个 提交的节点 代码还是原来你修改的） 
+git reset –hard commit_id （回退到上一个commit节点， 代码也发生了改变，变成上一次的）
+
+3.如果要是 提交了以后，可以使用 git revert
+
+还原已经提交的修改 
+此次操作之前和之后的commit和history都会保留，并且把这次撤销作为一次最新的提交 
+git revert HEAD 撤销前一次 commit 
+git revert HEAD^ 撤销前前一次 commit 
+git revert commit-id (撤销指定的版本，撤销也会作为一次提交进行保存） 
+git revert是提交一个新的版本，将需要revert的版本的内容再反向修改回去，版本会递增，不影响之前提交的内容。
+
+
+
+******************************************************************************************************************************************************
+由于SSH配置文件的不匹配，导致的Permission denied (publickey)及其解决方法 2014-09-03 01:42:41
+分类： IT综合技术
+读者如要转载，请标明出处和作者名，谢谢。 
+地址01：http://space.itpub.net/25851087 
+地址02：http://www.cnblogs.com/zjrodger/ 
+作者名：zjrodger 
+
+【问题发生环境和相关参数】
+(1)OS：Win7 32Bit.
+(2)Git：GitHub for Windows 2.0.
+    下载地址：https://windows.github.com/
+(3)Command Shell：Git Shell.
+
+【问题重现描述】
+    在Win7本地平台上安装完Github for Windows 2.0后，要在本地生成密匙，向Github上上传密匙并且进行网络连通性测试。
+    ①利用命令“ssh-keygen -t rsa -C "zjrodger@163.com" 生成SSH密匙（id_rsa和id_rsa.pub）后，将本地的“id_rsa.pub”文件中的内容上传到Github上的个人“SSH Keys”管理项中，从而生成一个新的SSH Keys。
+    ②之后，进行本地与Remote Server（Github网站）的连接测试，命令和结果如下所示：
+F:\Workspaces\Github_Workspace> ssh -T git@github.com 
+Warning: Permanently added 'github.com,192.30.252.131' (RSA) to the list of know 
+n hosts. 
+Permission denied (publickey).
+    在Windows的PowerShell中输入“ssh -T git@github.com”，结果出现“Permission Denied(publickey)”
+
+
+【问题原因】
+    在Github for Windows 2.0默认的安装配置中， SSH的配置文件ssh_config中的“IdentityFile“ 与实际情况不相符。
+(1)原来默认情况下的IdentifyFile的值
+    在Github for Windows 2.0上（默认安装情况下），SSH的配置文件ssh_config中的“IdentityFile（其值为密匙的全路径名）”这项信息的内容是“~/.ssh/github_rsa”，如下命令所示：
+Host github.com
+ StrictHostKeyChecking no
+ UserKnownHostsFile=/dev/null
+ IdentityFile=~/.ssh/github_rsa
+
+(2)实际的情形
+而实际上，通过命令“ssh-keygen -t rsa -C "zjrodger@163.com”生成的新的SSH密匙的全路径名为：“~/.ssh/id_rsa”和“~/.ssh/id_rsa.pub”。
+
+注意：~/.ssh/github_rsa  不等于 ~/.ssh/id_rsa
+
+(3)结论
+①Git默认安装情况下，ssh_config配置文件中的“IdentityFile”项的值：IdentityFile=~/.ssh/github_rsa
+②实际的IdentityFile的值：IdentityFile=~/.ssh/id_rsa
+    如上所述，Github for Windows 2.0在默认安装情况下，SSH的的配置文件ssh_config中的“IdentityFile”项的值与实际新创建的密匙全路径名不相符，结果导致本地的SSH工具无法找到到正确的密匙，进而无法同已经上传到Github密匙相匹配，结果就出现了“Permission denied (publickey)”这样的错误。
+
+(4)补充
+①SSH配置文件ssh_config在自己本地的路径：
+    C:\Users\Administrator\AppData\Local\GitHub\PortableGit_6d98349f44ba975cf6c762a720f8259a267ea445\etc\ssh
+②密匙文件的存放路径：
+    C:\Users\Administrator\.ssh
+③ssh_config的原文件（有误的版本）：
+Host *
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+
+
+Host github.com
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+IdentityFile=~/.ssh/github_rsa ④重装Github for windows 2.0后的新发现（重要）。
+    为了确保正确性，自己将本机的Github for Window 2.0卸载并且重装了一遍，发现SSH的配置文件ssh_config中的“IdentityFile”依然是“~/.ssh/github_rsa”。
+而重装后的密匙文件的存放路径（C:\Users\Administrator\.ssh）下，有四个密匙文件，分别是github_rsa和github_rsa.pub，id_rsa和id_rsa.pub，
+这样，用户就不用自己新建密匙文件了，只用将“github_rsa.pub”中的内容上传到Github网站的个人SSH管理中即可。
+之后，在本地与Remote端进行网络连通性测试，发现可以联通。
+这样，考虑到修改软件原有配置信息所带来的隐患，笔者就不推荐自己手动修改SSH的配置文件ssh_config中的“IdentityFile”字段这个方法了。
+
+
+【解决方法】
+方法一：
+   在生成新的密匙文件后，若新生成的密匙文件名字为“id_rsa”，则将ssh_config配置文件中的“IdentityFile”项的值改为“~/.ssh/id_rsa”
+方法二：
+    将新生成的密匙文件名字改为“github_rsa”，从而与ssh_config配置文件中的“IdentityFile”项的值相同。
+方法三：
+    重装Github for Window 2.0，不用新建密匙文件，而是用Github自带的“github_rsa.pub”文件。
+总之，不论方法一，放法二还是方法三，一定要保持新生成的密匙文件的名字同“ssh_config”中“IdentityFile”字段的值一致即可。
+
+******************************************************************************************************************************************************
+把本地的仓库和远程的仓库关联
+git remote add origin git@github.com:michaelliao/learngit.git
+
+就可以把本地库的所有内容推送到远程库上：
+
+$ git push -u origin master
+Counting objects: 19, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (19/19), done.
+Writing objects: 100% (19/19), 13.73 KiB, done.
+Total 23 (delta 6), reused 0 (delta 0)
+To git@github.com:michaelliao/learngit.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样：
+
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+
+
+一 分支管理、创建并切换分支
+首先，我们创建dev分支，然后切换到dev分支：
+
+$ git checkout -b dev
+Switched to a new branch 'dev'
+git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+
+$ git branch dev
+$ git checkout dev
+Switched to branch 'dev'
+然后，用git branch命令查看当前分支：
+
+$ git branch
+* dev
+  master
+git branch命令会列出所有分支，当前分支前面会标一个*号。
+
+
+我们把dev分支的工作成果合并到master分支上：
+
+$ git merge dev
+Updating d17efd8..fec145a
+Fast-forward
+ readme.txt |    1 +
+ 1 file changed, 1 insertion(+)
+git merge命令用于合并指定分支到当前分支。合并后，再查看readme.txt的内容，就可以看到，和dev分支的最新提交是完全一样的。
+
+注意到上面的Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快。
+
+当然，也不是每次合并都能Fast-forward，我们后面会讲其他方式的合并。
+
+合并完成后，就可以放心地删除dev分支了：
+
+$ git branch -d dev
+Deleted branch dev (was fec145a).
+删除后，查看branch，就只剩下master分支了：
+
+$ git branch
+* master
+因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。
+
+******************************************************************************************************************************************************

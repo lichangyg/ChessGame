@@ -1,12 +1,12 @@
 /frameworks/cocos2d-x/cocos/2d/Debug.win32/
-/frameworks/cocos2d-x/cocos/editor-support/proj.win32/Debug.win32/
 /frameworks/cocos2d-x/cocos/scripting/lua-bindings/proj.win32/Debug.win32/
 /frameworks/cocos2d-x/external/Box2D/proj.win32/Debug.win32/
-/frameworks/cocos2d-x/cocos/editor-support/spine/proj.win32/
+/frameworks/cocos2d-x/cocos/editor-support/spine/proj.win32/Debug.win32/
 /frameworks/runtime-src/proj.win32/Debug.win32/
 /frameworks/runtime-src/proj.win32/Release.win32/
 /frameworks/runtime-src/proj.win32/game.opensdf
 /frameworks/runtime-src/protobuf-2.6.1/protobuf-2.6.1/vsprojects/Debug.win32/
 /frameworks/runtime-src/proj.win32/game.sdf
+/frameworks/runtime-src/proj.win32/game.v12.suo
 /id_rsa
 /id_rsa.pub

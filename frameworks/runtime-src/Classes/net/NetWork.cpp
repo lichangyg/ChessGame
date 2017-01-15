@@ -127,6 +127,17 @@ void NetWork::recvData()
 		std::cout << "NetWork::recvData error!!!!" << std::endl;
 		return ;
 	}
+	// 消息长度
+	int lenght = 0;
+	memcpy(&lenght, recvBuf, 4);
+	// 大小端字节序转换
+	lenght = htonl(lenght);
+
+	// 协议号
+	int protocol = 0;
+	memcpy(&protocol, recvBuf + 4, 4);
+	// 大小端字节序转换
+	protocol = htonl(protocol);
 }
 
 // 销毁

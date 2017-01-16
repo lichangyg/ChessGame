@@ -1,11 +1,20 @@
 #include "NetWork.h"
+#include "IOSocketData.h"
 
 NetWork* NetWork::m_instance = nullptr;
 NetWork::NetWork():
-_socket(INVALID_SOCKET)
+_socket(INVALID_SOCKET),
+m_data(NULL)
 {
 	// 初始化socket
 	initSocket();
+
+	init();
+}
+
+void NetWork::init()
+{
+	m_data = new IOSocketData();
 }
 
 
@@ -106,6 +115,7 @@ bool NetWork::sendData(const char *sendData)
 {
 	if (_socket == INVALID_SOCKET)
 	{
+		connectSocket();
 		return false;
 	}
 	auto errCode = send(_socket,sendData,(int)strlen(sendData)+1,0); 
@@ -127,17 +137,9 @@ void NetWork::recvData()
 		std::cout << "NetWork::recvData error!!!!" << std::endl;
 		return ;
 	}
-	// 消息长度
-	int lenght = 0;
-	memcpy(&lenght, recvBuf, 4);
-	// 大小端字节序转换
-	lenght = htonl(lenght);
 
-	// 协议号
-	int protocol = 0;
-	memcpy(&protocol, recvBuf + 4, 4);
-	// 大小端字节序转换
-	protocol = htonl(protocol);
+	m_data->setCurPackageLenght(errCode);
+	m_data->pushMessage(recvBuf);
 }
 
 // 销毁
@@ -158,5 +160,11 @@ void NetWork::destory()
 	{
 		delete m_instance;
 		m_instance = nullptr;
+	}
+
+	if (m_data)
+	{
+		delete m_data;
+		m_data = nullptr;
 	}
 }

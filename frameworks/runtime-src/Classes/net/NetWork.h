@@ -12,6 +12,8 @@
 
 #define MAX_RECV_BUF_COUNT	1024*1024
 
+class IOSocketData;
+
 class NetWork
 {
 public:
@@ -29,6 +31,8 @@ public:
 	// 主动关闭网络
 	void close();
 private:
+	void init();
+
 	// 初始化网络配置
 	bool initSocket();
 
@@ -46,6 +50,9 @@ private:
 	int			m_port;
 
 	static NetWork *m_instance;
+
+protected:
+	IOSocketData *m_data;
 };
 
 

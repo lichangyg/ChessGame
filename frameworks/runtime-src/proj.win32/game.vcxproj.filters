@@ -34,6 +34,12 @@
     <ClInclude Include="..\Classes\util\DispatchHandler.h">
       <Filter>Classes\util</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\net\IOSocketData.h">
+      <Filter>Classes\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\net\SocketManager.h">
+      <Filter>Classes\net</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -50,6 +56,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\util\DispatchHandler.cpp">
       <Filter>Classes\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\net\IOSocketData.cpp">
+      <Filter>Classes\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\net\SocketManager.cpp">
+      <Filter>Classes\net</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

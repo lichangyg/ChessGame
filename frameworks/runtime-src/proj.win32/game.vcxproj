@@ -167,7 +167,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\net\IOSocketData.h" />
     <ClInclude Include="..\Classes\net\NetWork.h" />
+    <ClInclude Include="..\Classes\net\SocketManager.h" />
     <ClInclude Include="..\Classes\util\DispatchHandler.h" />
     <ClInclude Include="..\Classes\util\LuaUtil.h" />
     <ClInclude Include="main.h" />
@@ -175,7 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\net\IOSocketData.cpp" />
     <ClCompile Include="..\Classes\net\NetWork.cpp" />
+    <ClCompile Include="..\Classes\net\SocketManager.cpp" />
     <ClCompile Include="..\Classes\util\DispatchHandler.cpp" />
     <ClCompile Include="..\Classes\util\LuaUtil.cpp" />
     <ClCompile Include="main.cpp" />

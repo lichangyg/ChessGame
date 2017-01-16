@@ -41,7 +41,4 @@ protected:
 };
 
 
-#define gNetWork NetWork::getInstance()
-
-
 #endif //NET_WORK_H_

@@ -49,6 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // register_all_quick_manual(L);
 	engine->addSearchPath("src");
 	engine->getLuaStack()->reload("config");
+	engine->getLuaStack()->reload("net/socketHandler");
 	engine->getLuaStack()->reload(DISPATCHHANDLER_LUA_FILE_NAME);
 	// ¶ÁÈ¡µÇÂ¼·þÎñÆ÷IP
 	auto ip = LuaUtil::getLuapChar("config","getLoginSerVerIp");

@@ -46,7 +46,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     lua_module_register(L);
 
     // If you want to use Quick-Cocos2d-X, please uncomment below code
-    // register_all_quick_manual(L);
+     //register_all_quick_manual(L);
 	engine->addSearchPath("src");
 	engine->getLuaStack()->reload("config");
 	engine->getLuaStack()->reload("net/socketHandler");

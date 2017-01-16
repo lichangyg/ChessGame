@@ -16,6 +16,9 @@
     <Filter Include="Classes\util">
       <UniqueIdentifier>{e129f83f-48b5-433f-a9df-2c744883f601}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\scripting">
+      <UniqueIdentifier>{dcdd2707-1fcc-4c70-b543-df78e4ad7fa0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -40,6 +43,9 @@
     <ClInclude Include="..\Classes\net\SocketManager.h">
       <Filter>Classes\net</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\scripting\lua_cocos2dx_DispatchHandler_auto.hpp">
+      <Filter>Classes\scripting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -62,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\net\SocketManager.cpp">
       <Filter>Classes\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\scripting\lua_cocos2dx_DispatchHandler_auto.cpp">
+      <Filter>Classes\scripting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

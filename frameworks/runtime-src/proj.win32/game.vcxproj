@@ -170,6 +170,7 @@
     <ClInclude Include="..\Classes\net\IOSocketData.h" />
     <ClInclude Include="..\Classes\net\NetWork.h" />
     <ClInclude Include="..\Classes\net\SocketManager.h" />
+    <ClInclude Include="..\Classes\scripting\lua_cocos2dx_DispatchHandler_auto.hpp" />
     <ClInclude Include="..\Classes\util\DispatchHandler.h" />
     <ClInclude Include="..\Classes\util\LuaUtil.h" />
     <ClInclude Include="main.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="..\Classes\net\IOSocketData.cpp" />
     <ClCompile Include="..\Classes\net\NetWork.cpp" />
     <ClCompile Include="..\Classes\net\SocketManager.cpp" />
+    <ClCompile Include="..\Classes\scripting\lua_cocos2dx_DispatchHandler_auto.cpp" />
     <ClCompile Include="..\Classes\util\DispatchHandler.cpp" />
     <ClCompile Include="..\Classes\util\LuaUtil.cpp" />
     <ClCompile Include="main.cpp" />

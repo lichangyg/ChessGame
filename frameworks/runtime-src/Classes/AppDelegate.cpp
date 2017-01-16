@@ -57,8 +57,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// 读取登录服务器端口
 	auto port = LuaUtil::getLuaInt("config","getPort");
 
-	auto homeKeyCode = LuaUtil::getLuaInt(DISPATCHHANDLER_LUA_FILE_NAME,"getHomeKeyValueResume");
-	gDispatchhandler->addDispatchHandler(homeKeyCode,dispatch);
+	//auto homeKeyCode = LuaUtil::getLuaInt(DISPATCHHANDLER_LUA_FILE_NAME,"getHomeKeyValueResume");
+	//gDispatchhandler->addDispatchHandler(homeKeyCode,dispatch);
 
 	gNetWork->connection(ip,port);
     if (engine->executeScriptFile("src/main.lua")) {

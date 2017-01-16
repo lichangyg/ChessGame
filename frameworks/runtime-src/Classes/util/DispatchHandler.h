@@ -8,7 +8,8 @@
 typedef std::function<void(int cmd, void *data, size_t lenght)> ccDispatchCallBack;
 typedef std::function<void(void)> ccDispatchEndCallBack;
 
-typedef void (*SEL_DispatchEvent)();
+
+typedef void (cocos2d::Ref::*SEL_DispatchEvent)(int cmd, void *data, size_t lenght);
 
 struct DispatchData
 {

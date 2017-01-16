@@ -8,24 +8,27 @@
 typedef std::function<void(int cmd, void *data, size_t lenght)> ccDispatchCallBack;
 typedef std::function<void(void)> ccDispatchEndCallBack;
 
+typedef void (*SEL_DispatchEvent)();
+
+struct DispatchData
+{
+	int m_cmd;
+	int m_order;
+	ccDispatchCallBack m_func;
+};
+
+struct Dispatch
+{
+	int m_cmd;
+	void *m_data;
+	size_t m_lenght;
+	ccDispatchEndCallBack m_endCallBack;
+};
+
 #define DISPATCHHANDLER_LUA_FILE_NAME	"DispatchConfig"
 class DispatchHandler
 {
 public:
-	struct DispatchData
-	{
-		int m_cmd;
-		int m_order;
-		ccDispatchCallBack m_func;
-	};
-
-	struct Dispatch
-	{
-		int m_cmd;
-		void *m_data;
-		size_t m_lenght;
-		ccDispatchEndCallBack m_endCallBack;
-	};
 public:
 	DispatchHandler();
 	virtual ~DispatchHandler();
@@ -36,7 +39,7 @@ public:
 	int addDispatchHandler(const int cmd,const ccDispatchCallBack &dispatch);
 
 	// 添加消息处理
-	int addDispatchHandler(int cmd, DispatchData& dispatch);
+	int addDispatchHandlerByData(int cmd,const DispatchData *dispatch);
 
 	// 添加处理消息
 	void postDispatchHandler(int cmd, void *data,size_t lenght,const ccDispatchEndCallBack &endCallBack = nullptr);

@@ -33,6 +33,11 @@ local function main()
         director:setOpenGLView(glview)
     end
 
+    local dis = lcy.DispatchHandler:getInstance()
+    dis:addDispatchHandler(100,function()
+        print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+    end)
+
     glview:setDesignResolutionSize(480, 320, cc.ResolutionPolicy.NO_BORDER)
 
     --turn on display FPS

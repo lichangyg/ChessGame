@@ -12,4 +12,12 @@ extern "C" {
 
 int register_all_DispatchHandler(lua_State* tolua_S);
 
+
+
+
+
+
+
+
+
 #endif // __DispatchHandler_h__

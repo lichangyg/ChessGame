@@ -84,9 +84,9 @@ void DispatchHandler::postDispatchHandler(int cmd, void *data,size_t lenght,cons
 	m_dispatchs.push_back(dispatch);
 }
 
-std::vector<DispatchHandler::Dispatch> DispatchHandler::getDispatchs(int cmd)
+std::vector<Dispatch> DispatchHandler::getDispatchs(int cmd)
 {
-	std::vector<DispatchHandler::Dispatch> dispatchs;
+	std::vector<Dispatch> dispatchs;
 	for (auto it = m_dispatchs.begin(); it != m_dispatchs.end(); ++it)
 	{
 		auto dispatch = *it;
@@ -105,11 +105,12 @@ int DispatchHandler::addDispatchHandler(const int cmd,const ccDispatchCallBack &
 	DispatchData data;
 	data.m_cmd = cmd;
 	data.m_func = dispatch;
-	return addDispatchHandler(cmd,data);
+	return addDispatchHandlerByData(cmd,&data);
 }
 
-int DispatchHandler::addDispatchHandler(int cmd, DispatchData& dispatch)
+int DispatchHandler::addDispatchHandlerByData(int cmd, const DispatchData *pdispatch)
 {
+	DispatchData dispatch = *pdispatch;
 	if (checkHandler(cmd))
 	{
 		auto datas = getHandler(cmd);
@@ -188,7 +189,7 @@ bool DispatchHandler::checkHandler(int cmd)
 }
 
 // 获取消息内容
-std::vector<DispatchHandler::DispatchData> &DispatchHandler::getHandler(int cmd)
+std::vector<DispatchData> &DispatchHandler::getHandler(int cmd)
 {
 	auto it = m_dispatchMaps.begin();
 	for (;it != m_dispatchMaps.end(); ++it)

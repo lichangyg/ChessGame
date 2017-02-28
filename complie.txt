@@ -1,0 +1,39 @@
+远程桌面mstsc
+112.74.86.95		 【自营YY游戏中心下载服务器】
+10.116.1.124（内网）     
+administrator
+kxl!@#456qweqwe
+
+
+112.74.86.95:8695
+admin8695
+
+外测服务器远程：
+183.61.146.115:3389
+119.63.44.115
+administrator 
+#69C6fs#cssVyqGX3WTass
+
+-- 加密
+cocos luacompile -s  D:\QYChessHall2\src\app\fsmj -d D:\QYChessHall2\release\fsmj -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+
+cocos luacompile -s  D:\QYChessHall2\src\app\gdmj -d D:\QYChessHall2\release\gdmj -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+
+
+
+
+
+-- 广西麻将
+cocos luacompile -s  D:\ASingleGxGame\src\app\gxmj -d D:\ASingleGxGame\release\gxmj -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+cocos luacompile -s  D:\ASingleGxGame\src\app\game -d D:\ASingleGxGame\release\game -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+cocos luacompile -s  D:\ASingleGxGame\src\app\lobby -d D:\ASingleGxGame\release\lobby -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+cocos luacompile -s  D:\ASingleGxGame\src\app\qkasdk -d D:\ASingleGxGame\release\qkasdk -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+
+
+
+
+-- 北海麻将
+cocos luacompile -s  D:\ZhuChengMJ\src\app\qkasdk -d D:\ZhuChengMJ\release\qkasdk -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+cocos luacompile -s  D:\ZhuChengMJ\src\app\bhmj -d D:\ZhuChengMJ\release\bhmj -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+cocos luacompile -s  D:\ZhuChengMJ\src\app\game -d D:\ZhuChengMJ\release\game -e -k QkaGame~!@# -b QkaGameKey --disable-compile
+cocos luacompile -s  D:\ZhuChengMJ\src\app\lobby -d D:\ZhuChengMJ\release\lobby -e -k QkaGame~!@# -b QkaGameKey --disable-compile
